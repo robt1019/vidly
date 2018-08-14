@@ -16,14 +16,30 @@ class Movies extends Component {
   render() {
     return (
       <div>
-        <h3>Showing {this.state.movies.length} movies in the database</h3>
-        {this.state.movies.map(movie => (
-          <Movie
-            key={movie._id}
-            movie={movie}
-            onDelete={() => this.handleDelete(movie._id)}
-          />
-        ))}
+        {this.state.movies.length ? (
+          <h3>Showing {this.state.movies.length} movies in the database</h3>
+        ) : (
+          <h3>There are no movies in the database</h3>
+        )}
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Title</th>
+              <th scope="col">Genre</th>
+              <th scope="col">Stock</th>
+              <th scope="col">Rate</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.movies.map(movie => (
+              <Movie
+                key={movie._id}
+                movie={movie}
+                onDelete={() => this.handleDelete(movie._id)}
+              />
+            ))}
+          </tbody>
+        </table>
       </div>
     );
   }
